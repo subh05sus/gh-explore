@@ -39,7 +39,21 @@ export default function RepoExplorer() {
   const [repoDetails, setRepoDetails] = useState<RepoDetails | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-
+// Recursively collapse directories and sort folders before files
+const collapseFiles = (files: FileNode[]): FileNode[] => {
+  return files
+    .map(file => ({
+      ...file,
+      collapsed: true, // Collapse all directories initially
+      children: file.type === 'dir' && file.children ? collapseFiles(file.children) : file.children, // Recursively collapse directories
+    }))
+    .sort((a, b) => {
+      // Ensure directories come before files
+      if (a.type === "dir" && b.type === "file") return -1; // Place 'dir' before 'file'
+      if (a.type === "file" && b.type === "dir") return 1;  // Place 'file' after 'dir'
+      return 0; // Maintain original order for same types
+    });
+}
   const fetchRepoDetails = async () => {
     setLoading(true)
     setError(null)
@@ -56,15 +70,7 @@ export default function RepoExplorer() {
         throw new Error("Failed to fetch repository details")
       }
       const data = await response.json()
-       // Set collapsed to true for all directories initially
-       const collapseFiles = (files: FileNode[]): FileNode[] => {
-        return files.map(file => ({
-          ...file,
-          collapsed: true,
-          children: file.type === 'dir' && file.children ? collapseFiles(file.children) : file.children,
-        }))
-      }
-      data.fileStructure = collapseFiles(data.fileStructure) // Collapse all directories
+      data.fileStructure = collapseFiles(data.fileStructure); // Apply collapseFiles to the file structure
       setRepoDetails(data)
     } catch (err) {
       setError(err instanceof Error ? err.message : "An unexpected error occurred")
