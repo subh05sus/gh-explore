@@ -26,8 +26,8 @@ GitHub Repo Explorer is a web application that allows users to explore GitHub re
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/subh05sus/devdotcom-new.git
-cd devdotcom-new
+git clone https://github.com/subh05sus/gh-explore.git
+cd gh-explore
 ```
 
 ### Install Dependencies
