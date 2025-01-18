@@ -59,8 +59,17 @@ export async function GET(request: Request) {
   }
 }
 
-async function buildFileStructure(owner: string, repo: string, contents: any[], headers: HeadersInit, path = "") {
-  const structure = []
+async function buildFileStructure(
+  owner: string,
+  repo: string,
+  contents: any[],
+  headers: HeadersInit,
+  path = ""
+) {
+  const structure = [];
+
+  // Sort contents alphabetically by name before processing
+  contents.sort((a, b) => a.name.localeCompare(b.name));
 
   for (const item of contents) {
     if (item.type === "file") {
@@ -68,21 +77,30 @@ async function buildFileStructure(owner: string, repo: string, contents: any[], 
         name: item.name,
         type: "file",
         path: item.path,
-      })
+      });
     } else if (item.type === "dir") {
-      const subContentsResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${item.path}`, { headers })
-      const subContents = await subContentsResponse.json()
+      const subContentsResponse = await fetch(
+        `https://api.github.com/repos/${owner}/${repo}/contents/${item.path}`,
+        { headers }
+      );
+      const subContents = await subContentsResponse.json();
 
       structure.push({
         name: item.name,
         type: "dir",
         path: item.path,
-        children: await buildFileStructure(owner, repo, subContents, headers, item.path),
-        collapsed: false
-      })
+        children: await buildFileStructure(
+          owner,
+          repo,
+          subContents,
+          headers,
+          item.path
+        ),
+        collapsed: false,
+      });
     }
   }
 
-  return structure.reverse()
+  return structure;
 }
 
