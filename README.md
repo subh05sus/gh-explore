@@ -1,36 +1,125 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GitHub Repo Explorer
 
-## Getting Started
+GitHub Repo Explorer is a web application that allows users to explore GitHub repositories directly from their browser. It supports authentication for private repositories, displays repository details, and enables copying folder-file structures for documentation purposes.
 
-First, run the development server:
+## Features
+
+- **Sign In with GitHub**: Access private repositories using GitHub authentication.
+- **Repository Details**: View information such as stars, watchers, branches, primary language, creation and update dates, and visibility (public/private).
+- **Copy File Structure**: Easily copy the folder-file structure of a repository for documentation or reference.
+- **Theme Toggle**: Switch between light and dark themes.
+
+## Tech Stack
+
+- **Frontend**: React + TypeScript
+- **Styling**: Tailwind CSS
+- **Authentication**: NextAuth.js with GitHub OAuth
+
+## Setup Instructions
+
+### Prerequisites
+
+- Node.js and npm installed
+- GitHub account with developer access
+- GitHub OAuth application set up
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/subh05sus/devdotcom-new.git
+cd devdotcom-new
+```
+
+### Install Dependencies
+
+```bash
+npm install
+```
+
+### Configure Environment Variables
+
+Create a `.env` file in the root directory and add the following environment variables:
+
+```env
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=your-generated-secret-paste-it-here
+GITHUB_ID=your-github-client-id
+GITHUB_SECRET=your-github-client-secret
+```
+
+#### How to Generate the `NEXTAUTH_SECRET`
+
+You can generate a secure secret key using one of the following commands:
+
+- Using OpenSSL:
+
+  ```bash
+  openssl rand -base64 32
+  ```
+
+- Using Node.js:
+
+  ```bash
+  node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+  ```
+
+#### How to Get the GitHub Client ID and Secret
+
+1. Go to GitHub and sign in to your account.
+2. Click on your profile picture in the top-right corner and select "Settings" from the dropdown menu.
+3. Scroll down the left sidebar and click on "Developer settings" near the bottom.
+4. In the left sidebar of the Developer settings, click on "OAuth Apps".
+5. Click the "New OAuth App" button.
+6. Fill out the form with the following information:
+   - **Application name**: Choose a name for your app (e.g., "GitHub Repo Explorer")
+   - **Homepage URL**: Enter your application's homepage URL (e.g., [http://localhost:3000](http://localhost:3000) for local development)
+   - **Application description**: (Optional) Provide a brief description of your app
+   - **Authorization callback URL**: This should be your app's callback URL (e.g., [http://localhost:3000/api/auth/callback/github](http://localhost:3000/api/auth/callback/github) for local development)
+7. Click "Register application".
+8. On the next page, you'll see your new OAuth App's details. The "Client ID" field contains your GITHUB_ID.
+9. Click "Generate a new client secret" to create your GITHUB_SECRET.
+
+### Start the Application
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The application will be available at [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Usage
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Navigate to the application in your browser.
+2. Sign in with your GitHub account to explore your repositories.
+3. Select a repository to view details and copy its file structure.
+4. Toggle between light and dark themes for a better user experience.
 
-## Learn More
+## File Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+|-- public
+|   |-- logo.png
+|   |-- home.svg
+|-- src
+|   |-- components
+|   |-- pages
+|   |-- styles
+|-- tsconfig.json
+|-- tailwind.config.ts
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This project does not currently specify a license.
 
-## Deploy on Vercel
+## Contributing
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Contributions are welcome! Feel free to open issues or submit pull requests.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Contact
+
+Created by **Subhadip Saha**.
+
+If you have any questions or feedback, feel free to reach out!
