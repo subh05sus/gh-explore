@@ -1,5 +1,6 @@
 import { Metadata } from "next"
 import RepoExplorer from "@/components/repo-explorer"
+import FloatingButton from "@/components/FloatingButton"
 
 export const metadata: Metadata = {
   title: "GitHub Repo Explorer",
@@ -10,6 +11,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center lg:p-24 md:p-16 p-8">
       <RepoExplorer />
+      <FloatingButton />
     </main>
   )
 }
