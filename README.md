@@ -92,23 +92,10 @@ The application will be available at [http://localhost:3000](http://localhost:30
 ## Usage
 
 1. Navigate to the application in your browser.
-2. Sign in with your GitHub account to explore your repositories.
+2. Sign in with your GitHub account to explore your private repositories else you can only explore any public repository.
 3. Select a repository to view details and copy its file structure.
 4. Toggle between light and dark themes for a better user experience.
 
-## File Structure
-
-```
-|-- public
-|   |-- logo.png
-|   |-- home.svg
-|-- src
-|   |-- components
-|   |-- pages
-|   |-- styles
-|-- tsconfig.json
-|-- tailwind.config.ts
-```
 
 ## License
 
