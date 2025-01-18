@@ -56,6 +56,15 @@ export default function RepoExplorer() {
         throw new Error("Failed to fetch repository details")
       }
       const data = await response.json()
+       // Set collapsed to true for all directories initially
+       const collapseFiles = (files: FileNode[]): FileNode[] => {
+        return files.map(file => ({
+          ...file,
+          collapsed: true,
+          children: file.type === 'dir' && file.children ? collapseFiles(file.children) : file.children,
+        }))
+      }
+      data.fileStructure = collapseFiles(data.fileStructure) // Collapse all directories
       setRepoDetails(data)
     } catch (err) {
       setError(err instanceof Error ? err.message : "An unexpected error occurred")
