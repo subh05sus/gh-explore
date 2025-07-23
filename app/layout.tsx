@@ -45,8 +45,8 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: "@SubhadipDev",
-    creator: "@SubhadipDev",
+    site: "@that_webdev_guy",
+    creator: "@that_webdev_guy",
     title: "GitHub Repo Explorer",
     description:
       "Explore public and private GitHub repositories with ease. Supports file structure copying, theme toggling, and OAuth for developers.",
@@ -107,10 +107,7 @@ export default function RootLayout({
         />
         <meta property="og:url" content={metadata.openGraph.url} />
         <meta property="og:site_name" content={metadata.openGraph.siteName} />
-        <meta
-          property="og:image"
-          content={metadata.openGraph.images[0].url}
-        />
+        <meta property="og:image" content={metadata.openGraph.images[0].url} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:locale" content={metadata.openGraph.locale} />
@@ -125,7 +122,10 @@ export default function RootLayout({
           content={metadata.twitter.description}
         />
         <meta name="twitter:image" content={metadata.twitter.images[0].url} />
-        <meta name="twitter:image:alt" content={metadata.twitter.images[0].alt} />
+        <meta
+          name="twitter:image:alt"
+          content={metadata.twitter.images[0].alt}
+        />
       </head>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
