@@ -20,7 +20,7 @@ export const metadata = {
     "Next.js",
     "React TypeScript app",
   ].join(", "),
-  author: "Subhadip Saha (www.subhadip.me)",
+  author: "Subhadip Saha (thatdevguy.in)",
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-touch-icon.png",
@@ -30,7 +30,6 @@ export const metadata = {
     title: "GitHub Repo Explorer",
     description:
       "Effortlessly browse repositories, access private repos, and copy file structures for documentation. GitHub OAuth-supported.",
-    url: "https://gh-explore.subhadip.me/",
     siteName: "GitHub Repo Explorer",
     images: [
       {
@@ -75,7 +74,6 @@ export default function RootLayout({
         <meta name="keywords" content={metadata.keywords} />
         <meta name="author" content={metadata.author} />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://gh-explore.subhadip.me/" />
 
         {/* Favicons */}
         <link rel="manifest" href="/site.webmanifest" />
